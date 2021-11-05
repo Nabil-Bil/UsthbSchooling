@@ -1,2 +1,2 @@
-require('./bootstrap');
 import "bootstrap";
+require('./bootstrap');

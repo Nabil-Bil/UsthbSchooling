@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,3 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login',[UserController::class,'view_login'])->name('login');
+Route::post('/login',[UserController::class,'login'])->name('login')->middleware('throttle:only_three_attempts');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [Controller::class,'index'])->name('home');
+    Route::get('/logout',function(){
+        return redirect(route('login'));
+    });
+    Route::post('logout',[UserController::class,'logout'])->name('logout');
+
+});

@@ -9,4 +9,5 @@
     @yield('extra')
 </head>
 @yield('body')
+<script src="{{ asset('js/app.js') }}"></script>
 </html>
