@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login',[UserController::class,'view_login'])->name('login');
-Route::post('/login',[UserController::class,'login'])->name('login');
+Route::post('/login',[UserController::class,'login'])->name('login')->middleware('throttle:only_three_attempts');
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [Controller::class,'index'])->name('home');
     Route::get('/logout',function(){
