@@ -25,8 +25,8 @@ Login
                                 @endif
                                 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" />
-                                    <label class="form-label" for="typeEmailX">Email</label>
+                                    <input type="text" id="typenameX" class="form-control form-control-lg" name="name" />
+                                    <label class="form-label" for="typenameX">Name</label>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
@@ -40,14 +40,7 @@ Login
                                 </div>
 
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-
-                                <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                    <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                    <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                                    <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-                                </div>
-                            </form>
-                           
+                            </form>   
                         </div>
                     </div>
                 </div>

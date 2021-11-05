@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -17,18 +17,20 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
+        
         $this->validate($request,[
-            'email'=>['required','email'],
+            'name'=>'required',
             'password'=>'required'
         ]);
-        $info=$request->only('email','password');
+               
+            $info=$request->only('name','password');
+            if(Auth::attempt($info)){
+                return redirect()->route('home');
+            }
+            else{
+                return redirect()->back()->withErrors('Authentification Failed');
+            }
 
-        if(Auth::attempt($info)){
-            return redirect()->route('home');
-        }
-        else{
-            return redirect()->back()->withErrors('Authentification Failed');
-        }
     }
 
     public function logout()
