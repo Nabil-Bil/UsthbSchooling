@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Etudiant;
 use App\Models\Section;
 use Livewire\Component;
 use App\Models\Etudiant;
-use Illuminate\Http\Request;
+
 
 
 class EtudiantCreate extends Component

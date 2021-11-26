@@ -7,33 +7,16 @@ use Illuminate\Http\Request;
 
 class EtudiantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('etudiant.etudiant-index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
         return view('etudiant.etudiant-create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -70,13 +53,6 @@ class EtudiantController extends Controller
         return view('etudiant.etudiant-edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $request->validate([
@@ -109,23 +85,13 @@ class EtudiantController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function delete()
     {
         return view('etudiant.etudiant-delete');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * 
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Request $request)
     {
         if(Etudiant::etudiantExists($request->matricule))

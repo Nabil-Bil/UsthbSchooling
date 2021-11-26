@@ -14,6 +14,7 @@ class EtudiantDelete extends Component
     public $matricule_readonly="";
     public $disabled="disabled";
     public $search_disabled="";
+    public $sections;
 
     public function search()
     {
@@ -25,7 +26,6 @@ class EtudiantDelete extends Component
         else{
             session()->flash('message_non_valide','Etudiant  inexistant ') ;
             $this->etudiant=[];
-            $this->readonly='';
             $this->disabled='disabled';
             
         }
@@ -36,7 +36,6 @@ class EtudiantDelete extends Component
     {
         if(Etudiant::etudiantExists($this->matricule)){
             session()->flash('submit','Voulez-vous Supprimer?');
-            $this->readonly="readonly";
             $this->matricule_readonly="readonly";
             $this->disabled='disabled';
             $this->search_disabled='disabled';
@@ -44,7 +43,6 @@ class EtudiantDelete extends Component
         else{
             session()->flash('message_non_valide','Etudiant  inexistant') ;
             $this->etudiant=[];
-            $this->readonly='';
             $this->disabled='disabled';
         }
     }
@@ -52,7 +50,7 @@ class EtudiantDelete extends Component
 
     public function no()
     {
-        session()->flash('no','Suppression annulé annulé');
+        session()->flash('no','Suppression annulé');
     }
     
     public function mount()

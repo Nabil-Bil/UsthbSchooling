@@ -16,7 +16,7 @@
                         <a class="btn btn-success" href="{{ route('etudiant.index') }}">Mise à Jour Etudiant</a>
                     </div>
                     <div class="col">
-                        <a  class="btn btn-success">Mise à Jour Module</a>
+                        <a  class="btn btn-success" href="{{ route('module.index') }}">Mise à Jour Module</a>
                     </div>
                 </div>
                 
