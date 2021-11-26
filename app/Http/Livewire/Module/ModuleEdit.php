@@ -6,9 +6,8 @@ use App\Models\Module;
 use Livewire\Component;
 use App\Models\Enseignant;
 
-class ModuleCreate extends Component
+class ModuleEdit extends Component
 {
-
     public $enseignants;
     public $codeM;
     public $module;
@@ -23,15 +22,17 @@ class ModuleCreate extends Component
         if(Module::moduleExists($this->codeM)){
             session()->flash('message_valide','Module existant') ;
             $this->module=Module::find($this->codeM)->getAttributes();
-            $this->readonly='readonly';
-            $this->disabled="disabled";
+            
+            $this->readonly='';
+            $this->disabled='';
             
         }
         else{
-            session()->flash('message_non_valide','Module  inexistant veuillez saisir le reste des données') ;
+            session()->flash('message_non_valide','Module  inexistant') ;
             $this->module=[];
-            $this->readonly='';
-            $this->disabled='';
+            $this->readonly='readonly';
+            $this->disabled="disabled";
+            
             
         }
         
@@ -39,15 +40,15 @@ class ModuleCreate extends Component
 
     public function submit()
     {
-        if(!Module::moduleExists($this->codeM)){
-            session()->flash('submit','Voulez-vous ajouter?');
+        if(Module::moduleExists($this->codeM)){
+            session()->flash('submit','Voulez-vous Modifier?');
             $this->readonly="readonly";
             $this->codeM_readonly="readonly";
             $this->disabled='disabled';
             $this->search_disabled='disabled';
         }
         else{
-            session()->flash('message_valide','Module existant') ;
+            session()->flash('message_non_valide','Module inexistant') ;
             $this->module=[];
             $this->readonly='readonly';
             $this->disabled="disabled";
@@ -59,7 +60,7 @@ class ModuleCreate extends Component
 
     public function no()
     {
-        session()->flash('no','Ajout annulé');
+        session()->flash('no','Modification annulé');
     }
     
     public function mount()
@@ -67,9 +68,8 @@ class ModuleCreate extends Component
         $this->enseignants=Enseignant::all();
     }
 
-
     public function render()
     {
-        return view('livewire.module.module-create');
+        return view('livewire.module.module-edit');
     }
 }

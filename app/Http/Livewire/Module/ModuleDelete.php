@@ -6,32 +6,27 @@ use App\Models\Module;
 use Livewire\Component;
 use App\Models\Enseignant;
 
-class ModuleCreate extends Component
+class ModuleDelete extends Component
 {
-
     public $enseignants;
     public $codeM;
     public $module;
-    public $readonly="readonly";
     public $codeM_readonly="";
     public $disabled="disabled";
     public $search_disabled="";
 
     public function search()
     {
-        $this->resetErrorBag();
         if(Module::moduleExists($this->codeM)){
             session()->flash('message_valide','Module existant') ;
             $this->module=Module::find($this->codeM)->getAttributes();
-            $this->readonly='readonly';
-            $this->disabled="disabled";
+            $this->disabled="";
             
         }
         else{
-            session()->flash('message_non_valide','Module  inexistant veuillez saisir le reste des données') ;
+            session()->flash('message_non_valide','Module  inexistant') ;
             $this->module=[];
-            $this->readonly='';
-            $this->disabled='';
+            $this->disabled='disabled';
             
         }
         
@@ -39,9 +34,8 @@ class ModuleCreate extends Component
 
     public function submit()
     {
-        if(!Module::moduleExists($this->codeM)){
-            session()->flash('submit','Voulez-vous ajouter?');
-            $this->readonly="readonly";
+        if(Module::moduleExists($this->codeM)){
+            session()->flash('submit','Voulez-vous Supprimer?');
             $this->codeM_readonly="readonly";
             $this->disabled='disabled';
             $this->search_disabled='disabled';
@@ -49,7 +43,6 @@ class ModuleCreate extends Component
         else{
             session()->flash('message_valide','Module existant') ;
             $this->module=[];
-            $this->readonly='readonly';
             $this->disabled="disabled";
         }
 
@@ -59,7 +52,7 @@ class ModuleCreate extends Component
 
     public function no()
     {
-        session()->flash('no','Ajout annulé');
+        session()->flash('no','Suppression annulé');
     }
     
     public function mount()
@@ -68,8 +61,9 @@ class ModuleCreate extends Component
     }
 
 
+    
     public function render()
     {
-        return view('livewire.module.module-create');
+        return view('livewire.module.module-delete');
     }
 }

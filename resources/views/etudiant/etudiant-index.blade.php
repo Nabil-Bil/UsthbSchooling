@@ -6,7 +6,7 @@
 
 @section('body')
 @include('partials.navbar')
-    <body class="bg-">
+    <body class="">
         <div class="container mt-5">
             <div class="row mt-5">
                 <div class="col"><a class=" btn btn-success" href="{{ route('etudiant.create') }}"> Ajouter Etudiant</a></div>

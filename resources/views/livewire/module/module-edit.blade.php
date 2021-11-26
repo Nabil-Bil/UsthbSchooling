@@ -45,7 +45,7 @@
           @endif
           <div style="display: flex; align-items:center; justify-content:center; margin-top:100px">
             <div >
-              <button type="button"  class="btn btn-dark" wire:click='submit' {{ $disabled }}>Ajouter</button>
+              <button type="button"  class="btn btn-dark" wire:click='submit' {{ $disabled }}>Modifier</button>
             </div>
           </div>
           @if (session()->has('submit'))
@@ -62,7 +62,7 @@
           <div class="alert alert-warning mt-5 text-center" role="alert">
             <h3>{{ session('yes') }}</h3>
             <div class="d-flex justify-content-around">
-              <a href="{{ route('module.create') }}" class="btn btn-dark mt-2">Ok</a>
+              <a href="{{ route('module.edit') }}" class="btn btn-dark mt-2">Ok</a>
             </div>
           </div>  
           @endif
@@ -71,7 +71,7 @@
           <div class="alert alert-warning mt-5 text-center" role="alert">
             <h3>{{ session('no') }}</h3>
             <div class="d-flex justify-content-around">
-              <a href="{{ route('module.create') }}" class="btn btn-dark mt-2" >Ok</a>
+              <a href="{{ route('module.edit') }}" class="btn btn-dark mt-2" >Ok</a>
             </div>
           </div>  
           @endif
