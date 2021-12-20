@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Etudiant;
 use App\Models\Module;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class ModuleController extends Controller
     {
 
         $request->validate([
-            'codeM'=>['required','numeric'],
+            'codeM'=>['required','numeric','min:0','integer'],
             'libellè'=>['required'],
             'coef'=>['required','numeric','max:10'],
             'enseignant'=>['required'],
@@ -40,13 +41,17 @@ class ModuleController extends Controller
         );
         if(!Module::moduleExists($request->codeM))
         {
+            $etudiants=Etudiant::get();
             $module=new Module();
             $module->codeM=$request->codeM;
             $module->libelléM=$request->libellè;
             $module->coef=$request->coef;
             $module->codeEns=$request->enseignant;
             $module->save();
-    
+            $module=Module::find($request->codeM);
+            foreach($etudiants as $etudiant){
+                $module->etudiants()->attach($etudiant->matricule);
+            }
             $request->session()->flash('yes','Ajout fait avec succès');
             
         }
@@ -61,7 +66,7 @@ class ModuleController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'codeM'=>['required','numeric'],
+            'codeM'=>['required','numeric','min:0','integer'],
             'libellè'=>['required'],
             'coef'=>['required','numeric','max:10'],
             'enseignant'=>['required'],

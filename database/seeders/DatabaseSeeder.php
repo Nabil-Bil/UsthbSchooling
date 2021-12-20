@@ -27,5 +27,9 @@ class DatabaseSeeder extends Seeder
             'password'=>'scolarité'
         ]);
 
+        \App\Models\Enseignant::factory(5)->create();
+
+        
+
     }
 }

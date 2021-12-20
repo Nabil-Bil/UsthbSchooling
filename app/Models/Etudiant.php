@@ -26,4 +26,14 @@ class Etudiant extends Model
             return true;
         }
     }
+
+    public function modules()
+    {
+        return $this->belongsToMany(Module::class,'examens','matricule','codeM');
+    }
+
+    public function set_note($module,$note)
+    {
+        return $this->modules()->updateExistingPivot($module,['note'=>$note]);
+    }
 }

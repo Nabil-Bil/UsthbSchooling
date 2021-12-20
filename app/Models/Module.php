@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Etudiant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Module extends Model
 {
@@ -23,4 +24,12 @@ class Module extends Model
             return true;
         }
     }
+    public function etudiants(){
+        return $this->belongsToMany(Etudiant::class,'examens','codeM','matricule');
+    }
+    public function etudiants_without_note()
+    {
+        return $this->belongsToMany(Etudiant::class,'examens','codeM','matricule')->wherePivot('note','=',null);
+    }
+
 }

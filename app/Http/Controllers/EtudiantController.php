@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
+use App\Models\Module;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\AssignOp\Mod;
 
 class EtudiantController extends Controller
 {
@@ -29,14 +31,26 @@ class EtudiantController extends Controller
         );
         if(!Etudiant::etudiantExists($request->matricule))
         {
+            $all_modules=Module::get();
+            
             $etudiant=new Etudiant();
             $etudiant->matricule=$request->matricule;
-            $etudiant->prenom=$request->prénom;
+            $etudiant->prénom=$request->prénom;
             $etudiant->nom=$request->nom;
             $etudiant->groupe=$request->groupe;
             $etudiant->codeS=$request->section;
-    
+            
             $etudiant->save();
+            $etudiant=Etudiant::find($request->matricule);
+            
+            foreach($all_modules as $module){
+                $etudiant->modules()->attach($module->codeM,['matricule'=>$etudiant->matricule]);
+            }
+            
+
+            
+
+            
     
             $request->session()->flash('yes','Ajout fait avec succès');
             
@@ -73,7 +87,7 @@ class EtudiantController extends Controller
             Etudiant::where('matricule',$request->matricule)->update([
                 'matricule'=>$request->matricule,
                 'nom'=>$request->nom,
-                'prenom'=>$request->prénom,
+                'prénom'=>$request->prénom,
                 'codeS'=>$request->section,
                 'groupe'=>$request->groupe,
             ]);

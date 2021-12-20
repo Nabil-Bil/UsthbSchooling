@@ -9,7 +9,7 @@
 <body>
     @include('partials.navbar')
     <div class="container mt-5">
-            <h1>Menu Principale</h1>      
+                 
             <div class="container mt-5">
                 <div class="row">
                     <div class="col">
@@ -17,6 +17,9 @@
                     </div>
                     <div class="col">
                         <a  class="btn btn-success" href="{{ route('module.index') }}">Mise à Jour Module</a>
+                    </div>
+                    <div class="col">
+                        <a  class="btn btn-success" href="{{ route('examens') }}">Saisie de notes</a>
                     </div>
                 </div>
                 

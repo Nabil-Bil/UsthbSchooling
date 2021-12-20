@@ -20,7 +20,7 @@
           <div class="mb-3 row">
               <label for="prénom" class="col-sm-2 col-form-label">Prénom</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="prénom" name="prénom" wire:model.lazy='etudiant.prenom' {{ $readonly }}>
+                <input type="text" class="form-control" id="prénom" name="prénom" wire:model.lazy='etudiant.prénom' {{ $readonly }}>
               </div>
           </div>
           <div class="mb-3 row">
@@ -28,7 +28,7 @@
               <div class="col-sm-10">
                 <select type="text" class="form-select" id="section"  wire:model.lazy='etudiant.codeS' name="section">
                   @foreach ($sections as $section )
-                  <option value="{{ $section->codeS }}">{{ $section->libillé }}</option>
+                  <option value="{{ $section->codeS }}">{{ $section->libellé }}</option>
                   @endforeach
                 </select>
               </div>

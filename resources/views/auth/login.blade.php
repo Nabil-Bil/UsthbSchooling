@@ -14,7 +14,7 @@ Login
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
 
-                            <form class="mb-md-5 mt-md-4 pb-5" method="POST" action="{{ route('login') }}">
+                            <form class="mb-md-5 mt-md-4 pb-5" method="POST" action="{{ route('login_post') }}">
                                 @csrf
                                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
